@@ -1,4 +1,3 @@
-// Quiz Questions
 const quizQuestions = [
   {
     question: "What is the capital of France?",
@@ -55,7 +54,7 @@ function submitQuiz() {
   });
   const result = document.getElementById("quiz-result");
   result.textContent = `✅ You got ${score} out of ${quizQuestions.length} correct.`;
-  result.style.color = score >= 3 ? "green" : "red";
+  result.style.color = score >= 3 ? "lightgreen" : "red";
   result.classList.add("show");
 }
 
@@ -77,26 +76,17 @@ function getWeather() {
         const sunrise = daily.sunrise[i].split("T")[1];
         const sunset = daily.sunset[i].split("T")[1];
         return (
-          `📅 ${date}
-` +
-          `🌡 Max: ${daily.temperature_2m_max[i]}°C | Min: ${daily.temperature_2m_min[i]}°C
-` +
-          `💨 Wind: ${daily.windspeed_10m_max[i]} km/h | ☀️ Sunrise: ${sunrise} | 🌇 Sunset: ${sunset}
-` +
-          `🔆 UV Index (max): ${daily.uv_index_max[i]}
-
-`
+          `📅 ${date}\n` +
+          `🌡 Max: ${daily.temperature_2m_max[i]}°C | Min: ${daily.temperature_2m_min[i]}°C\n` +
+          `💨 Wind: ${daily.windspeed_10m_max[i]} km/h | ☀️ Sunrise: ${sunrise} | 🌇 Sunset: ${sunset}\n` +
+          `🔆 UV Index (max): ${daily.uv_index_max[i]}\n\n`
         );
       }).join("");
 
       weatherOutput.textContent = 
-        `📍 Location: (${lat}, ${lon})
-` +
-        `🌡 Temp: ${current.temperature}°C | 💨 Wind: ${current.windspeed} km/h
-
-` +
-        `🔮 3-Day Forecast:
-${forecast}`;
+        `📍 Location: (${lat}, ${lon})\n` +
+        `🌡 Temp: ${current.temperature}°C | 💨 Wind: ${current.windspeed} km/h\n\n` +
+        `🔮 3-Day Forecast:\n${forecast}`;
     })
     .catch(err => {
       document.getElementById("weather-output").textContent = "⚠️ Error fetching weather data.";
